@@ -1,4 +1,4 @@
-
+3.2 Conversion of floating point .hdf5 file to quantized and compiled model(.hdf5 to .xmodel) (Summarized from https://github.com/Xilinx/Vitis-AI-Tutorials/tree/1.4/Introduction/03-Basic/Module_4 )
 ###### Converting the Keras HDF5 Checkpoint to a TensorFlow Frozen Graph, compile, quantize and compile
 The TensorFlow checkpoint is converted into a frozen graph (.pb) where variables become constants and training nodes (optimizer, loss) are removed. The resulting frozen_graph.pb is stored in ./files/build/freeze/.
 
