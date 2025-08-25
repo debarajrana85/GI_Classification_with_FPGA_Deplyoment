@@ -1,1 +1,15 @@
 
+Converting the Keras HDF5 Checkpoint to a TensorFlow Frozen Graph
+The TensorFlow checkpoint is converted into a frozen graph (.pb) where variables become constants and training nodes (optimizer, loss) are removed. The resulting frozen_graph.pb is stored in ./files/build/freeze/.
+
+•	In the host system run the docker >>> /home/user/Vitis-AI/docker_run.sh xilinx/vitis-ai:2.5
+•	Activate the TensorFlow environment>>> conda activate tensorflow
+Open the keras2tf.py file: update the model file path ---- weights='./saved_model/ldfgnet.hdf5'
+•	Run the script: keras2tf.py>>>python keras2tf.sh
+
+•	Output: it will generate the frozen graph 
+3.2.1 Quantization and Compilation of the model:
+The DPU runs only in INT8, so the floating-point frozen graph must be quantized to 8-bit before deployment. Calibration uses a small dataset processed exactly like training data. Images are generated with tf_gen_images.py and stored in ./files/build/quantize/images with a list file (later deleted). The function calib_input in image_input_fn.py loads images with OpenCV, converts BGR→RGB, and normalizes pixels to [0,1]. After quantization, two models are produced in ./files/build/quantize: deploy_model.pb (for deployment) and quantize_eval_model.pb (for evaluation).
+The Vitis AI compiler converts the quantized model into optimized micro-instructions and outputs an .xmodel in ./build/compile/.
+•	Run the script: qt_comp.sh >>>source ./qt_comp.sh
+•	Output: model.xmodel
