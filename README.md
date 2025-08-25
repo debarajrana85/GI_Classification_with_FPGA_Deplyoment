@@ -6,4 +6,4 @@ The main program is gi_classification.ipynb, which contains TensorFlow code to r
 
 Currently, you can replace any pretrained model in place of that and execute the code to save the trained file as an HDF5 file.
 After executing the code from vitis_ai, the required file will be automatically generated.
-The program needs to be executed in Tensorflow 1.15
+
