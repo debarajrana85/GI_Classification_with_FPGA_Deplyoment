@@ -11,6 +11,7 @@ tf.compat.v1.disable_eager_execution()
 #========================================================================================================================================
 
 CHKPT_MODEL_DIR = './build/checkpoints'
+os.makedirs(CHKPT_MODEL_DIR, exist_ok=True) 
 backend.set_learning_phase(0)
 
 weights='./model_model/ldfgnet.hdf5'
