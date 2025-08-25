@@ -1,0 +1,17 @@
+Perform the inference on ZCU104 with the .xmodel file
+•	Boot the zcu104 from the SD card image and perform the connection (using: https://pynq.readthedocs.io/en/v2.3/getting_started/zcu104_setup.html )
+•	Connect the board to a PC using Ethernet cable, and the PC IP can be set to 192.168.2.0 via Tera Term to access the board (TeraTerm>>serial>>port>>setup>>serial port>>speed>115200>>ok)
+•	Login to the board by browsing to http://192.168.2.99 on PC, required password: xilinx>
+•	It open jupyter notebook, upload the .xmodel file available in vitis_ai/build/compile and dataset to a directory. 
+•	Upload three more files dpu.bit, dpu.xclbin, and dpu.hwh (specific to the board These can be downloaded to a PC from:
+	bit file link: https://github.com/Xilinx/DPU-PYNQ/blob/v2.5.0/pynq_dpu/dpu.bit.link 
+	hwh file link:https://github.com/Xilinx/DPU-PYNQ/blob/v2.5.0/pynq_dpu/dpu.hwh.link 
+	xclbin file link:https://github.com/Xilinx/DPU-PYNQ/blob/v2.5.0/pynq_dpu/dpu.xclbin.link 
+dpu.bit → Programs the FPGA hardware (the DPU logic).
+dpu.hwh → Describes the hardware design to the PYNQ framework.
+dpu.xclbin → Used by Vitis AI runtime to run AI models on the DPU
+•	Run the inference.ipynb file that initially uploaded to the board. 
+The .ipynb file loads the DPU bitstream (dpu.bit) onto the FPGA, which configures the FPGA fabric to instantiate the Deep Learning Processing Unit (DPU). 
+It then loads the compiled deep learning model (.xmodel) onto the DPU. Finally, it runs inference to evaluate power consumption, and throughput.
+
+
