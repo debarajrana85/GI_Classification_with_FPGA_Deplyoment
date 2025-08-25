@@ -1,1 +1,19 @@
+####Training of model of save the model file
+  •	Read the dataset and split them to train, test and valid with a ratio of 70:20:10.
+  •	Perform the data augmentation (Can use offline augmentation tool like Albumentations python library or can use ImageDatagenerator for fly on the go online augmentation. Augmentation will be performed on Train set only.
+  •	Load the pretrained model/custom model with custom classification head (can execute the file train.ipynb) : for ease of demonstration used ImageDatagenerator for augmentation
+  •	The trained model(save best weights) has been saved as model.hdf5 format (floating point 32bit to integer 8bit)
+  •	Run the LDF-GastroNet.ipynb in the GPU 
+  (Model file yet to upload)
+  You can try with some other pretrained model :
 
+import tensorflow as tf
+base_model=tf.keras.applications.MobileNetV2(weights = "imagenet", include_top = False ,input_shape=(128,128,3), classes=5)
+x = base_model.output
+
+x = tf.keras.layers.GlobalAveragePooling2D()(x)
+x = tf.keras.layers.Dense(classes)(x)       
+pred = tf.keras.layers.Activation('softmax')(x)
+
+model = tf.keras.models.Model(inputs = base_model.input , outputs = pred)
+model.summary()
