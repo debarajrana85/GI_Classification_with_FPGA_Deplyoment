@@ -1,0 +1,25 @@
+import os
+g0=os.listdir('colitis')
+g1=os.listdir('normal')
+g2=os.listdir('polyps')
+g3=os.listdir('esophag')
+g4=os.listdir('pylorus')
+
+MyFile=open('calib_input.txt','w')
+
+for i in g0:
+	MyFile.write(os.path.join('colitis',i))
+	MyFile.write('\n')
+for i in g1:
+	MyFile.write(os.path.join('normal',i))
+	MyFile.write('\n')
+for i in g2:
+	MyFile.write(os.path.join('polyps',i))
+	MyFile.write('\n')
+for i in g3:
+	MyFile.write(os.path.join('esophag',i))
+	MyFile.write('\n')
+for i in g4:
+	MyFile.write(os.path.join('pylorus',i))
+	MyFile.write('\n')
+MyFile.close()
